@@ -9,20 +9,20 @@ module counter (
    
 );
 always @ (posedge clk or posedge reset)
-    qa = qa + 1;
+    begin
     
+    qa = qa + 1;
+        
     if (reset)
-       begin
        data <= 8'h00;
-       end
-  
+         
     if(wr)
     begin
        data <= wdata;
        $display("written %h",wdata);
     end
-   else
-      begin
-      data <= data + 8'h01;
+    else
+       data <= data + 8'h01;
+      
       end
 endmodule
