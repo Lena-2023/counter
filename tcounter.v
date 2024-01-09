@@ -3,9 +3,10 @@ module test_counter;
 reg reset, clk, wr;
 reg [7:0]wdata;
 wire [7:0] data_cnt;
+wire [7:0] qa;
 
 //устанавливаем экземпл€р тестируемого модул€
-counter counter_inst(reset, clk, wdata, wr, data_cnt);
+counter counter_inst(reset, clk, wdata, wr, data_cnt, qa);
 
 //моделируем сигнал тактовой частоты
 always
@@ -19,6 +20,7 @@ begin
   reset = 0;
   wdata = 8'h00;
   wr = 1'b0;
+  qa = 1;
 
 //через временной интервал "50" подаем сигнал сброса
   #50 reset = 1;
@@ -36,6 +38,7 @@ begin
     begin
       wdata = 8'h55;
       wr = 1'b1;
+      qa = qa+1;
     end
 
 //по следующему фронту снимаем сигнал записи
@@ -62,6 +65,6 @@ end
 
 //наблюдаем на некоторыми сигналами системы
 initial
-$monitor($stime,, reset,, clk,,, wdata,, wr,, data_cnt);
+$monitor($stime,, reset,, clk,, wdata,, wr,, data_cnt,, qa);
 
 endmodule

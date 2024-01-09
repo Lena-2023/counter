@@ -5,7 +5,7 @@ module counter (
     input wire wr,
     output reg [7:0] data,
     
-    output [7:0] qa
+    output reg [7:0] qa
    
 );
 always @ (posedge clk or posedge reset)
