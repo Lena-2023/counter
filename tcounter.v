@@ -3,7 +3,7 @@ module test_counter;
 reg reset, clk, wr;
 reg [7:0]wdata;
 wire [7:0] data_cnt;
-wire [7:0] qa;
+reg [7:0] qa;
 
 //устанавливаем экземпляр тестируемого модуля
 counter counter_inst(reset, clk, wdata, wr, data_cnt, qa);
